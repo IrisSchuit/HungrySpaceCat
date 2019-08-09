@@ -35,6 +35,7 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 
 	private Animator anim;
+	private AudioManager audioManager;
 
 	[Header("Events")]
 
@@ -50,7 +51,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		anim = GetComponent<Animator>();
-
+		audioManager = FindObjectOfType<AudioManager>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -152,6 +153,8 @@ public class CharacterController2D : MonoBehaviour
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
+			audioManager.PlayAudio(4);
+	
 			// Add a vertical force to the player.
 			m_Grounded = false;
 

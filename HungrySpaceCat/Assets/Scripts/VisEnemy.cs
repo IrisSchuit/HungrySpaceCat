@@ -21,9 +21,13 @@ public class VisEnemy : MonoBehaviour
 	public Transform point1, point2;
 	private bool inRange = false;
 	private Animator anim;
+	private GameUI gameUI;
+	private AudioManager audioManager;
 
 	private void Start()
 	{
+		audioManager = FindObjectOfType<AudioManager>();
+		gameUI = FindObjectOfType<GameUI>();
 		anim = GetComponent<Animator>();
 		shootCooldown = 0f;
 		gameObject.GetComponent<Rigidbody2D>().velocity = transform.right * movementSpeed;
@@ -36,6 +40,7 @@ public class VisEnemy : MonoBehaviour
 		if (thisCollider.IsTouching(otherCollider))
 		{
 			player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 200));
+			audioManager.PlayAudio(0);
 			died = true;
 		}
 
@@ -49,6 +54,7 @@ public class VisEnemy : MonoBehaviour
 
 	IEnumerator DeadVis()
 	{
+		gameUI.enemiesUI.Remove(this.gameObject);
 		yield return new WaitForSeconds(2f);
 		Destroy(this.gameObject);
 	}
@@ -128,15 +134,18 @@ public class VisEnemy : MonoBehaviour
 		if (CanAttack)
 		{
 			shootCooldown = shootingRate;
+			audioManager.PlayAudio(3);
 			if (flip)
 			{
 				Rigidbody2D bulletInstance = Instantiate(bal, geweer.transform.position, Quaternion.identity) as Rigidbody2D;
 				bulletInstance.GetComponent<Rigidbody2D>().velocity = -transform.right * 10;
+				Destroy(bulletInstance, 5f);
 			}	
 			else
 			{
 				Rigidbody2D bulletInstance = Instantiate(bal, geweer.transform.position, Quaternion.identity) as Rigidbody2D;
 				bulletInstance.GetComponent<Rigidbody2D>().velocity = transform.right * 10;
+				Destroy(bulletInstance, 5f);
 			}
 		}
 	}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2554213802822226030}
   - component: {fileID: 2554213802822226031}
   - component: {fileID: 2554213802822226024}
+  - component: {fileID: 1862263081}
   m_Layer: 0
   m_Name: Vis_Enemy
   m_TagString: Untagged
@@ -128,7 +129,7 @@ MonoBehaviour:
   geweer: {fileID: 2554213802831498526}
   bal: {fileID: 2658507633127618398, guid: e3494d5e0998482478683407b6eb628b, type: 3}
   shootingRate: 2
-  minDistance: 10
+  minDistance: 5
   movementSpeed: 2
   point1: {fileID: 0}
   point2: {fileID: 0}
@@ -153,6 +154,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &1862263081
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554213802822226029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0fb7eb272e47b7458d5244853b11088, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2554213802831498526
 GameObject:
   m_ObjectHideFlags: 0

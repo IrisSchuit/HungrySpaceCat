@@ -39,7 +39,6 @@ public class Player : MonoBehaviour
 		if(other.gameObject.tag == "Bal")
 		{
 			lives--;
-			
 			Destroy(other.gameObject);
 		}
 	}
