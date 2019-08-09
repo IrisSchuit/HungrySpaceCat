@@ -20,9 +20,11 @@ public class VisEnemy : MonoBehaviour
 
 	public Transform point1, point2;
 	private bool inRange = false;
+	private Animator anim;
 
 	private void Start()
 	{
+		anim = GetComponent<Animator>();
 		shootCooldown = 0f;
 		gameObject.GetComponent<Rigidbody2D>().velocity = transform.right * movementSpeed;
 	}
@@ -39,8 +41,16 @@ public class VisEnemy : MonoBehaviour
 
 		if (died == true)
 		{
-			Destroy(this.gameObject);
+			shootingRate = 20f;
+			anim.SetBool("dead", true);
+			StartCoroutine("DeadVis");
 		}	
+	}
+
+	IEnumerator DeadVis()
+	{
+		yield return new WaitForSeconds(2f);
+		Destroy(this.gameObject);
 	}
 
 	private void FixedUpdate()

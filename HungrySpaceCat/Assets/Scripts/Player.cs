@@ -27,6 +27,11 @@ public class Player : MonoBehaviour
 		{
 			Destroy(this.gameObject);
 		}
+
+		if(lives >= totalLives)
+		{
+			lives = totalLives;
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -34,6 +39,7 @@ public class Player : MonoBehaviour
 		if(other.gameObject.tag == "Bal")
 		{
 			lives--;
+			
 			Destroy(other.gameObject);
 		}
 	}
